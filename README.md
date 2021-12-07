@@ -15,6 +15,8 @@ The application stores data using cache memory which will help the users to get 
 
 ***maximize the speed of fetching data from the database and the speed after implementing***
 
+State management tool used: Redux, Redux-Thunk. 
+
 ***cache memory has been validated through Postman.***
 2. Factories in Laravel are created in order to insert data for testing purposes. You can use tinker console to generate dummy data.
 3. Events and Listeners are created on the models to despatch event while data is created.
