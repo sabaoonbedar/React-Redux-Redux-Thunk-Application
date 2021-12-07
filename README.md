@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# React-Laravel-CRUD-Cache-Memory
+The application stores data using cache memory which will help the users to get response for their activities in less amount of time.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+**The Task: CRUD Application - Laravel and React**
 
-In the project directory, you can run:
+1. Complete application with Rest API alongside CRUD (add, update, delete, view) functionalities through React Js and Laravel.
+2. Salary is calculated on list display via React Js by hourly wage, fixed each month, full pay or pay per hour.
+3. Each employee is only in one department through one-to-one relationship in database.
+4. The data type in the feed can be verified and appropriate error is also displayed if a field is not valid through network errors’ access via Axios request.
 
-### `npm start`
+**Technologies**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+***1. The data has been stored on the server using cache memory in Laravel in order to***
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+***maximize the speed of fetching data from the database and the speed after implementing***
 
-### `npm test`
+***cache memory has been validated through Postman.***
+2. Factories in Laravel are created in order to insert data for testing purposes. You can use tinker console to generate dummy data.
+3. Events and Listeners are created on the models to despatch event while data is created.
+4. Migrations are created for database scripts.
+5. Rest API is created to perform CRUD operation for the application through JSON bridging Laravel and React Js.
+6. There is still a room left for middlewares for authentication and seeders for insertion of data that could be employed in the future version of the app.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Application Setting: Laravel and React Js**
 
-### `npm run build`
+There are two folders with the name of client and server, client contains React Js while the server contains Laravel. In order to set up the application, please follow below steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. First go to the folder of server and in the .env file update your MYSQL database configuration.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Go to the server folder through terminal and run below command for migrations
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+        `php artisan migrate`
 
-### `npm run eject`
+      this will create three tables on database.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. After running the migration command, execute the below SQL script:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**departments table**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+     INSERT INTO `departments` (`id`, `name`, `created\_at`, `updated\_at`) VALUES
+        (1, 'Psychology', NULL, NULL),
+        (2, 'Mathematics', NULL, NULL),
+        (3, 'Geology', NULL, NULL),
+        (4, 'Pharmacy', NULL, NULL);
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**And**
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**salary\_types table**
 
-### Analyzing the Bundle Size
+            INSERT INTO `salary\_types` (`id`, `type`, `created\_at`, `updated\_at`) VALUES
+            (1, 'Hourly', NULL, NULL),
+            (2, 'Bonuses', NULL, NULL),
+            (3, 'Commission', NULL, NULL);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+in order to insert the required values to the table **departments and salary_types.**
 
-### Making a Progressive Web App
+4. For adding dummy data into the **employee\_details** table you have to use tinker:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+        php artisan tinker 
+     and you will see **Psy shell** then run the below command:
 
-### Advanced Configuration
+        factory(\App\EmployeeDetails::class,100)->create()
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+5. Run command :    
+    
+        php artisan config:cache
 
-### Deployment
+6. On server folder run below command:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+        php artisan serve
 
-### `npm run build` fails to minify
+7. Go to the client folder and run the below command :
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+        npm start
+
+     the above command will run the client side and will give you access to the application services.
