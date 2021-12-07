@@ -1,5 +1,5 @@
-# React-Laravel-CRUD-Cache-Memory
-The application stores data using cache memory which will help the users to get response for their activities in less amount of time.
+# React-Redux-ReduxThunk-Laravel-CRUD-Cache-Memory
+The application stores data using cache memory which will help the users to get response for their activities in less amount of time, redux and redux thunk are included in order to manage the state of the application through the most popular library.
 
 
 **The Task: CRUD Application - Laravel and React**
